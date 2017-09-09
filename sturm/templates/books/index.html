@@ -1,0 +1,56 @@
+{% extends 'mybase.html' %}
+{% load book_extras %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 l8 push-l2">
+            <div class="row">
+                <div class="center-align">
+                    <a class="waves-effect waves-light btn start-search-btn tink-gold black-text"
+                       href="{% url 'books:select' %}">Поиск</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item-index">
+                    {% if latest_book_list %}
+                        <ul>
+                            {% for book in latest_book_list %}
+                                <li class="item-card {{ book.recommend }}">
+                                    <div class="card-content">
+                                        <p class="item-title">{{ book.title }}</p>
+                                        <p class="item-author">{{ book.author }}</p>
+                                    </div>
+                                    {% extended_book_tags book %}
+                                    <div class="card-action">
+                                        <span class="action-buttons">
+                                            <a href="{% url 'books:detail' book.id %}"
+                                               class="waves-effect waves-light btn">
+                                                Описание
+                                            </a>
+                                            <a href="{{ book.file.url }}"
+                                               class="waves-effect waves-pdf-red btn">
+                                                Скачать
+                                            </a>
+                                        </span>
+                                        <span class="switch book-status-switch">
+                                            <span class="book-id-source" hidden="hidden">{{ book.id }}</span>
+                                            <span class="book-status-source" hidden="hidden">{{ book.status }}</span>
+                                            <label>
+                                                Не читал
+                                                <input type="checkbox">
+                                                <span class="lever"></span>
+                                                Читал
+                                            </label>
+                                        </span>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Книг нет</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

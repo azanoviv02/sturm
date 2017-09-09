@@ -1,0 +1,27 @@
+{% extends 'mybase.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col s12 l8 push-l2">
+            <div class="item-index">
+                {% if lesson_list %}
+                    <ul>
+                        {% for lesson in lesson_list %}
+                            <li class="item-card">
+                                <div class="card-content">
+                                    <p class="item-title">{{ lesson.title }}</p>
+                                </div>
+                                <div class="card-action action-buttons">
+                                    <a href="{% url 'lessons:detail' lesson.id %}" class="waves-effect waves-light btn">
+                                        Читать
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Уроков нет</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

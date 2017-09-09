@@ -1,0 +1,32 @@
+{% extends 'mybase.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col s12 l8 push-l2">
+            <div class="item-index">
+                {% if tech_list %}
+                    <ul>
+                        {% for tech in tech_list %}
+                            <li class="item-card">
+                                <div class="card-content">
+                                    <p class="item-title">{{ tech.title }}</p>
+                                </div>
+                                {% if tech.tags.names %}
+                                    <div class="tag-container">
+                                        {% for tag in tech.tags.names %}
+                                            <div class="tag-chip">{{ tag }}</div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="card-action action-buttons">
+                                    <a href="{% url 'techs:detail' tech.id %}" class="waves-effect waves-light btn">Описание</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Библиотек нет</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,45 @@
+$nav-color: white;
+$border-color: color('grey', 'darken-3');
+
+header nav {
+    background-color: $nav-color;
+
+    a.brand-logo {
+        font-weight: bold;
+        color: black;
+    }
+
+    li a {
+        font-size: 20px;
+        font-weight: lighter;
+        color: color('grey', 'darken-4');
+    }
+
+    border-bottom: 4px double $border-color;
+}
+
+footer.page-footer {
+    border-top: 4px double $border-color;
+
+    background-color: $nav-color;
+
+    font-weight: lighter;
+    color: color('grey', 'darken-4');
+
+    .footer-copyright {
+        background-color: inherit;
+        color: inherit;
+    }
+}
+
+//=== next two selects are for sticky footers ===
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}

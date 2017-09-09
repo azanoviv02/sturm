@@ -1,0 +1,32 @@
+{% extends 'mybase.html' %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load book_extras %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m10 push-m1 l8 push-l2">
+            <div class="item-details">
+                <p class="item-title">{{ book.title }}</p>
+                <p class="item-author left-align">{{ book.author }}</p>
+                <div class="item-description-container">
+                    <div class="item-description">{{ book.description|richtext }}</div>
+                </div>
+                {% extended_book_tags book %}
+                {#                {% if book.techs.all %}#}
+                {#                    <div class="collection">#}
+                {#                        {% for book_tech_relationship in book.techs.all %}#}
+                {#                            {% with  book_tech_relationship.tech as tech %}#}
+                {#                                <a href="{% url 'techs:detail' tech.id %}" class="collection-item">{{ tech.title }}</a>#}
+                {#                            {% endwith %}#}
+                {#                        {% endfor %}#}
+                {#                    </div>#}
+                {#                {% endif %}#}
+                <a class="waves-effect waves-light pdf-btn btn" href="{{ book.file.url }}">
+                    <i class="material-icons left">library_books</i>
+                    PDF
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

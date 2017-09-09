@@ -1,0 +1,100 @@
+{% extends 'mybase.html' %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load book_extras %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m10 push-m1 l8 push-l2">
+
+            <div class="item-details">
+                <div class="row">
+                    <p class="item-title center-on-small-only">{{ tech.title }}</p>
+                </div>
+
+                <div class="row">
+                    {{ tech.body|richtext }}
+                </div>
+
+                {% if tech.related_article_links.all %}
+                    <div class="row">
+                        <p class="related-section-title">Статьи</p>
+                        <ul class="collapsible" data-collapsible="accordion">
+                            {% for link in tech.related_article_links.all %}
+                                <li>
+                                    <div class="collapsible-header">
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                        {{ link.name }}
+                                    </div>
+                                    <div class="collapsible-body">
+                                        <div class="action-buttons">
+                                            <a href="{{ link.url }}"
+                                               class="waves-effect waves-light btn">
+                                                Читать
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% if tech.related_video_links.all %}
+                    <div class="row">
+                        <p class="related-section-title">Видео</p>
+                        <ul class="collapsible" data-collapsible="accordion">
+                            {% for link in tech.related_video_links.all %}
+                                <li>
+                                    <div class="collapsible-header">
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                        {{ link.name }}
+                                    </div>
+                                    <div class="collapsible-body">
+                                        <p>
+                                            {{ link.description|richtext }}
+                                        </p>
+                                        {% include_block link.video %}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% if tech.books.all %}
+                    <div class="row">
+                        <p class="related-section-title">Книги</p>
+                        <ul class="collapsible" data-collapsible="accordion">
+                            {% for tech_book_relationship in tech.books.all %}
+                                {% with book=tech_book_relationship.book %}
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                            {{ book.title }}
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <p>{{ book.description|richtext }}</p>
+                                            {% extended_book_tags book %}
+                                            <div class="action-buttons">
+                                                <a href="{% url 'books:detail' book.id %}"
+                                                   class="waves-effect waves-light btn">
+                                                    Описание
+                                                </a>
+                                                <a href="{{ book.file.url }}"
+                                                   class="waves-effect waves-pdf-red btn">
+                                                    Скачать
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endwith %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

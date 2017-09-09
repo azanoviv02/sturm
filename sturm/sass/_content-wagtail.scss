@@ -1,0 +1,13 @@
+.block-video {
+    @extend .video-container;
+
+    margin: 20px 0px
+}
+
+.block-image {
+    img {
+        @extend .responsive-img;
+
+        margin: 20px 0px
+    }
+}

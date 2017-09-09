@@ -1,0 +1,27 @@
+.book-selector-form {
+
+    .card-title {
+        font-weight: bold;
+        color: white;
+    }
+
+    [type="radio"]:checked + label:after,
+    [type="radio"].with-gap:checked + label:before,
+    [type="radio"].with-gap:checked + label:after {
+        border: $my-secondary;
+    }
+
+    [type="radio"]:checked + label:after,
+    [type="radio"].with-gap:checked + label:after {
+        background-color: $my-secondary;
+    }
+
+    label {
+        color: white;
+    }
+}
+
+.start-search-btn {
+    margin-top: 40px;
+    font-weight: bold;
+}

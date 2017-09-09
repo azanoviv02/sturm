@@ -1,0 +1,44 @@
+//=== Main ====================================
+//=============================================
+
+.item-title {
+    font-size: $h3-fontsize;
+    font-weight: bold;
+    line-height: 100%;
+}
+
+.item-author {
+    font-size: $h5-fontsize;
+}
+
+.action-buttons {
+    a.btn {
+        background-color: color('grey', 'darken-4');
+
+        color: white !important;
+        font-weight: bold;
+
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+}
+
+.pdf-btn {
+    background-color: color('pdf-red', 'base') !important;
+}
+
+//=== Tags ====================================
+//=============================================
+
+//.tag-container {
+//}
+
+.tag-chip {
+    @extend .chip;
+
+    @include border-radius(5px);
+}
+
+.tag-list {
+    @include horizontal-list();
+}

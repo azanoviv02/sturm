@@ -1,0 +1,19 @@
+{% extends "mybase.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m4 push-m4">
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                    <i class="material-icons right">send</i>
+                </button>
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+            <p>{% trans "Forgot password" %}? <a href="{% url 'password_reset' %}">{% trans "Reset it" %}</a>!</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% if book.tags.names or book.language or book.techs.all %}
+    <div class="tag-container">
+        {% for book_tech_relationship in book.techs.all %}
+            {% with book_tech_relationship.tech as tech %}
+                <a class="tag-chip waves-effect"
+                   href="{% url 'techs:detail' tech.id %}">
+                    {{ tech.title|lower }}
+                </a>
+            {% endwith %}
+        {% empty %}
+        {% endfor %}
+        {% for tag in book.tags.all %}
+            <a class="tag-chip waves-effect"
+               href="{% url 'books:specific_index' languages='any' techs='any' tags=tag.slug %}">
+                {{ tag.name }}
+            </a>
+        {% empty %}
+        {% endfor %}
+        {% if book.language %}
+            {% with book.language as language %}
+                <a class="tag-chip waves-effect"
+                   href="{% url 'books:specific_index' languages=language.slug techs='any' tags='any' %}">
+                    {{ language }}
+                </a>
+            {% endwith %}
+        {% endif %}
+    </div>
+{% endif %}

@@ -1,0 +1,63 @@
+//=== Main ====================================
+//=============================================
+
+.item-index {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.item-card {
+    @extend .card;
+
+    border: 1px black solid;
+
+    .tag-container {
+        @extend .card-content;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .card-action {
+        border-top: 2px solid color('grey', 'lighten-2');
+    }
+}
+
+//=== Switch ==================================
+//=============================================
+
+.book-status-switch {
+
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 20px;
+
+    padding-top: 5px;
+
+    white-space: nowrap;
+
+    label {
+        margin-bottom: 2px;
+
+        font-size: 14px;
+        font-weight: normal;
+        color: black;
+    }
+}
+
+//=== Recommendation ==========================
+//=============================================
+
+.recommend-yes {
+    .card-content, .tag-container {
+        background-color: $my-secondary !important;
+    }
+
+    .card-action {
+        border-top: 1px black solid;
+    }
+
+    .tag-chip {
+        color: black;
+        border: 1px black solid;
+    }
+}

@@ -1,0 +1,40 @@
+.homepage-card-container {
+
+    margin-top: 40px;
+
+    a {
+        @include unstyled-link;
+    }
+}
+
+//.homepage-card {
+//    @extend .card;
+//    @extend .hoverable;
+//
+//    padding: 20px auto;
+//
+//    font-size: $h4-fontsize;
+//    font-weight: bold;
+//
+//    background-color: color('grey', 'darken-4');
+//    color: color('grey', 'lighten-5');
+//    border-top: 8px solid $my-secondary;
+//    border-bottom: 8px solid $my-secondary;
+//}
+
+.homepage-card {
+    @extend .card;
+    @extend .hoverable;
+
+    padding: 20px auto;
+
+    font-size: $h4-fontsize;
+    font-weight: bold;
+
+    background-color: white;
+    color: color('grey', 'darken-4');
+
+    border: 4px double black;
+    //@include border-radius(10px);
+    @include border-radius(2px);
+}

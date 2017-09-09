@@ -1,0 +1,56 @@
+{% extends 'mybase.html' %}
+
+{#{% load mezzanine_tags %}#}
+
+{% block content %}
+    <form class="book-selector-form" action="/books/select/" method="post" id="selector-form">
+        {% csrf_token %}
+        <div class="row">
+            {% for field in form %}
+                <div class="col s12 m4">
+                    <div class="card grey lighten-4">
+                        <div class="card-content">
+                            <span class="card-title black-text">{{ field.label }}</span>
+                            {% for choice in field.field.choices %}
+                                <p>
+                                    {% if field.name == "languages" %}
+                                        <input name="{{ field.name }}" type="checkbox" value="{{ choice.0 }}"
+                                               id="{{ field.name }}+{{ choice.0 }}" checked="checked"/>
+                                    {% else %}
+                                        <input name="{{ field.name }}" type="checkbox" value="{{ choice.0 }}"
+                                               id="{{ field.name }}+{{ choice.0 }}"/>
+                                    {% endif %}
+                                    <label for="{{ field.name }}+{{ choice.0 }}"
+                                           class="black-text">{{ choice.1 }}</label>
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light tink-gold black-text" type="submit" value="Submit">Найти
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="row">
+                    <div class="card red white-text">
+                        <div class="card-content">
+                            <ol>
+                                {% for error in field.errors %}
+                                    <li><strong>{{ error|escape }}</strong></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </form>
+{% endblock content %}
